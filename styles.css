@@ -128,6 +128,10 @@ h1 {
     transition: background-color 0.2s;
 }
 
+#request-permission {
+    display: none;
+}
+
 #request-permission:hover {
     background-color: #e64a19;
 }

@@ -8,13 +8,24 @@ window.onload = function() {
 };
 
 
+function isSafariBrowser() {
+    return /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+}
 
-// Function to request accelerometer permission
+window.onload = function() {
+    if (isSafariBrowser()) {
+        document.getElementById('request-permission').style.display = 'block';
+    } else {
+        document.getElementById('request-permission').style.display = 'none';
+    }
+};
+
 function requestAccelerometerPermission() {
-    if (typeof DeviceMotionEvent !== 'undefined' && typeof DeviceMotionEvent.requestPermission === 'function') {
+    if (typeof DeviceMotionEvent.requestPermission === 'function') {
         DeviceMotionEvent.requestPermission()
             .then(permissionState => {
                 if (permissionState === 'granted') {
+                    document.getElementById('request-permission').style.display = 'none';
                     setupAccelerometerEvents();
                 } else {
                     alert("Permission to access accelerometer was denied.");
@@ -22,6 +33,7 @@ function requestAccelerometerPermission() {
             })
             .catch(console.error);
     } else {
+        // For browsers that don't require permission
         setupAccelerometerEvents();
     }
 }
