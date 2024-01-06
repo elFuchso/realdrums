@@ -21,21 +21,20 @@ function setupAccelerometerEvents() {
         let y = event.acceleration.y;
         let z = event.acceleration.z;
         let intensity = Math.sqrt(x*x + y*y + z*z);
-
-        document.querySelectorAll('.drum-pad').forEach(pad => {
-            pad.addEventListener('touchstart', (event) => {
-                event.preventDefault(); // Prevents additional mouse events
-                pad.classList.add('pressed');
-                playDrumSound(pad.id, intensity);
-                
-                setTimeout(() => {
-                    pad.classList.remove('pressed');
-                }, 100);
-            });
-        });
-
     });
 }
+
+document.querySelectorAll('.drum-pad').forEach(pad => {
+    pad.addEventListener('touchstart', (event) => {
+        event.preventDefault();
+        pad.classList.add('pressed');
+        playDrumSound(pad.id);
+        
+        setTimeout(() => {
+            pad.classList.remove('pressed');
+        }, 100);
+    });
+});
 
 function playDrumSound(drumType, intensity) {
     let soundFile = getSoundFile(drumType); 
