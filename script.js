@@ -1,5 +1,3 @@
-let lastIntensity = 0;
-
 // Function to request accelerometer permission
 function requestAccelerometerPermission() {
     if (typeof DeviceMotionEvent !== 'undefined' && typeof DeviceMotionEvent.requestPermission === 'function') {
@@ -17,26 +15,23 @@ function requestAccelerometerPermission() {
     }
 }
 
-function setupAccelerometerEvents() {
-    window.addEventListener('devicemotion', event => {
-        let x = event.acceleration.x;
-        let y = event.acceleration.y;
-        let z = event.acceleration.z;
-        lastIntensity = Math.sqrt(x*x + y*y + z*z);
-    });
-}
-
 document.querySelectorAll('.drum-pad').forEach(pad => {
     pad.addEventListener('touchstart', (event) => {
         event.preventDefault();
         pad.classList.add('pressed');
-        playDrumSound(pad.id);
-        
+
+        // Read accelerometer data directly in the touchstart event
+        window.addEventListener('devicemotion', (dmEvent) => {
+            let intensity = getIntensityFromEvent(dmEvent);
+            playDrumSound(pad.id, intensity);
+        }, { once: true }); // Use the 'once' option to only trigger this once
+
         setTimeout(() => {
             pad.classList.remove('pressed');
         }, 100);
     });
 });
+
 let audioFiles = {
     'bass-drum': new Audio('sounds/bass.wav'),
     'snare-drum': new Audio('sounds/snare.wav'),
@@ -44,21 +39,19 @@ let audioFiles = {
     // Add more as needed
 };
 
-function playDrumSound(drumType) {
+function getIntensityFromEvent(event) {
+    let x = event.accelerationIncludingGravity.x;
+    let y = event.accelerationIncludingGravity.y;
+    let z = event.accelerationIncludingGravity.z;
+    return Math.sqrt(x * x + y * y + z * z);
+}
+
+function playDrumSound(drumType, intensity) {
     let audio = audioFiles[drumType];
     if (audio) {
         audio.currentTime = 0; // Rewind to the start
-        audio.volume = Math.min(lastIntensity / 12, 1)
+        audio.volume = Math.min(intensity / 10, 1); // Adjust volume based on intensity
         audio.play();
-    }
-}
-
-function getSoundFile(drumType) {
-    switch (drumType) {
-        case 'bass-drum': return 'sounds/bass.wav';
-        case 'snare-drum': return 'sounds/snare.wav';
-        case 'hihat': return 'sounds/hihat.wav';
-        // Add more cases for different drum types
     }
 }
 
