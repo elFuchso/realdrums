@@ -40,9 +40,9 @@ let audioFiles = {
 };
 
 function getIntensityFromEvent(event) {
-    let x = event.accelerationIncludingGravity.x;
-    let y = event.accelerationIncludingGravity.y;
-    let z = event.accelerationIncludingGravity.z;
+    let x = event.acceleration.x;
+    let y = event.acceleration.y;
+    let z = event.acceleration.z;
     return Math.sqrt(x * x + y * y + z * z);
 }
 
