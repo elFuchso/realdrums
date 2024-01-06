@@ -42,23 +42,6 @@ h1 {
     background-color: #1976d2;
 }
 
-/* #info-btn {
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    padding: 10px;
-    background-color: #2196f3;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.2s;
-} */
-
-/* #info-btn:hover {
-    background-color: #1976d2;
-} */
-
 .popup {
     display: none;
     position: fixed;

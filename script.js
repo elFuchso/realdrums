@@ -1,18 +1,9 @@
+// Check browser and device
 window.onload = function() {
-    var isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
-    var isMobile = /Mobi|Android/i.test(navigator.userAgent);
 
-    if (!isChrome || !isMobile) {
+    if (!isChrome() || !isMobile()) {
         document.getElementById('browser-warning-popup').style.display = 'flex';
     }
-};
-
-
-function isSafariBrowser() {
-    return /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
-}
-
-window.onload = function() {
     if (isSafariBrowser()) {
         document.getElementById('request-permission').style.display = 'block';
     } else {
@@ -20,7 +11,20 @@ window.onload = function() {
     }
 };
 
+function isChrome() {
+    return /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
+}
+
+function isMobile() {
+    return /Mobi|Android/i.test(navigator.userAgent);
+}
+
+function isSafariBrowser() {
+    return /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+}
+
 function requestAccelerometerPermission() {
+    //check if permission is required to be requested
     if (typeof DeviceMotionEvent.requestPermission === 'function') {
         DeviceMotionEvent.requestPermission()
             .then(permissionState => {
@@ -38,16 +42,16 @@ function requestAccelerometerPermission() {
     }
 }
 
+// Add touch listener to drum pads
 document.querySelectorAll('.drum-pad').forEach(pad => {
     pad.addEventListener('touchstart', (event) => {
         event.preventDefault();
         pad.classList.add('pressed');
-
-        // Read accelerometer data directly in the touchstart event
+        // add motion listener to touch listener
         window.addEventListener('devicemotion', (dmEvent) => {
             let intensity = getIntensityFromEvent(dmEvent);
             playDrumSound(pad.id, intensity);
-        }, { once: true }); // Use the 'once' option to only trigger this once
+        }, { once: true });
 
         setTimeout(() => {
             pad.classList.remove('pressed');
@@ -55,6 +59,7 @@ document.querySelectorAll('.drum-pad').forEach(pad => {
     });
 });
 
+// load audio files
 let audioFiles = {
     'bass-drum': new Audio('sounds/bass.wav'),
     'snare-drum': new Audio('sounds/snare.wav'),
@@ -67,9 +72,10 @@ let audioFiles = {
     'hihat-foot': new Audio('sounds/hihatfoot.wav'),
     'bingo': new Audio('sounds/bingo.wav'),
     'bongo': new Audio('sounds/bongo.wav')
-    // Add more as needed
 };
 
+
+// preload audio files
 for (let key in audioFiles) {
     audioFiles[key].preload = 'auto';
     audioFiles[key].load();
@@ -79,24 +85,25 @@ function getIntensityFromEvent(event) {
     let x = event.acceleration.x;
     let y = event.acceleration.y;
     let z = event.acceleration.z;
-    return Math.sqrt(x * x + y * y + z * z);
+    return Math.sqrt(x * x + y * y + z * z); // calculate tap intensity from acceleration vector
 }
 
 function playDrumSound(drumType, intensity) {
     let audio = audioFiles[drumType];
     if (audio) {
-        audio.currentTime = 0; // Rewind to the start
-        audio.volume = Math.min(Math.max(intensity-0.2,0)/3, 1); // Adjust volume based on intensity
+        audio.currentTime = 0; //rewind to start
+        audio.volume = Math.min(Math.max(intensity-0.2,0)/3, 1); // scale audio volume
         audio.play();
     }
 }
 
+// add listener to info button
 document.getElementById('info-btn').addEventListener('click', function() {
     document.getElementById('popup').style.display = 'flex';
 });
-
+// add listener to close button
 document.querySelector('.close-btn').addEventListener('click', function() {
     document.getElementById('popup').style.display = 'none';
 });
-
+// add listener to permissions button 
 document.getElementById("request-permission").addEventListener('click', requestAccelerometerPermission);
