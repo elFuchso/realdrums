@@ -32,3 +32,9 @@ body, html {
     transform: scale(0.9);
     background-color: #bbb;
 }
+
+#intensity-readout {
+    margin-top: 20px;
+    font-size: 20px;
+    color: #333;
+}
