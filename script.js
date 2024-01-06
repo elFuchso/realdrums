@@ -36,7 +36,14 @@ document.querySelectorAll('.drum-pad').forEach(pad => {
 let audioFiles = {
     'bass-drum': new Audio('sounds/bass.wav'),
     'snare-drum': new Audio('sounds/snare.wav'),
-    'hihat': new Audio('sounds/hihat.wav')
+    'hihat': new Audio('sounds/hihat.wav'),
+    'tim': new Audio('sounds/tim.wav'),
+    'tam': new Audio('sounds/tam.wav'),
+    'tom': new Audio('sounds/tom.wav'),
+    'click': new Audio('sounds/click.wav'),
+    'cowbell': new Audio('sounds/cowbell.wav'),
+    'bingo': new Audio('sounds/bingo.wav'),
+    'bongo': new Audio('sounds/bongo.wav')
     // Add more as needed
 };
 
