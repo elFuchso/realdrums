@@ -51,7 +51,7 @@ function playDrumSound(drumType, intensity) {
     let audio = audioFiles[drumType];
     if (audio) {
         audio.currentTime = 0; // Rewind to the start
-        audio.volume = Math.min(intensity / 30, 1); // Adjust volume based on intensity
+        audio.volume = Math.min(intensity / 2, 1); // Adjust volume based on intensity
         audio.play();
     }
 }
