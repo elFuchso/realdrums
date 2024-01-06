@@ -48,7 +48,7 @@ function playDrumSound(drumType) {
     let audio = audioFiles[drumType];
     if (audio) {
         audio.currentTime = 0; // Rewind to the start
-        audio.volume = Math.min(lastIntensity / 10, 1)
+        audio.volume = Math.min(lastIntensity / 100, 1)
         audio.play();
     }
 }
