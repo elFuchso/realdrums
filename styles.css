@@ -4,14 +4,14 @@ body, html {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #282c34; /* Dark background for contrast */
+    background-color: #282c34;
     color: #ffffff;
     font-family: 'Arial', sans-serif;
 }
 
 #drum-container {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* Adjust based on number of pads */
+    grid-template-columns: repeat(3, 1fr);
     gap: 15px;
     padding: 15px;
 }
@@ -19,14 +19,14 @@ body, html {
 .drum-pad {
     width: 100px;
     height: 100px;
-    background-color: #4caf50; /* Green color for pads */
+    background-color: #4caf50;
     display: flex;
     justify-content: center;
     align-items: center;
     border-radius: 15px;
     box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
     cursor: pointer;
-    transition: all 0.2s ease; /* Smooth transition for interaction */
+    transition: all 0.2s ease;
     user-select: none;
     font-weight: bold;
     text-transform: uppercase;
@@ -35,7 +35,7 @@ body, html {
 .drum-pad:active, .drum-pad.pressed {
     transform: scale(0.95);
     box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
-    background-color: #388e3c; /* Darker shade when pressed */
+    background-color: #388e3c;
 }
 
 #intensity-readout {
