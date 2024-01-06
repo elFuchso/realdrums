@@ -35,12 +35,19 @@ document.querySelectorAll('.drum-pad').forEach(pad => {
         }, 100);
     });
 });
+let audioFiles = {
+    'bass-drum': new Audio('sounds/bass.wav'),
+    'snare-drum': new Audio('sounds/snare.wav'),
+    'hihat': new Audio('sounds/hihat.wav')
+    // Add more as needed
+};
 
-function playDrumSound(drumType, intensity) {
-    let soundFile = getSoundFile(drumType); 
-    let audio = new Audio(soundFile);
-    audio.volume = Math.min(intensity / 10, 1);
-    audio.play();
+function playDrumSound(drumType) {
+    let audio = audioFiles[drumType];
+    if (audio) {
+        audio.currentTime = 0; // Rewind to the start
+        audio.play();
+    }
 }
 
 function getSoundFile(drumType) {
