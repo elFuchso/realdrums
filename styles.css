@@ -2,6 +2,7 @@ body, html {
     height: 100%;
     margin: 0;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     background-color: #f0f0f0;
@@ -24,4 +25,10 @@ body, html {
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.2);
     user-select: none;
+    transition: transform 0.1s, background-color 0.1s;
+}
+
+.drum-pad.pressed {
+    transform: scale(0.9);
+    background-color: #bbb;
 }
