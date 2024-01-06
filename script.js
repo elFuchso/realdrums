@@ -24,6 +24,7 @@ document.querySelectorAll('.drum-pad').forEach(pad => {
         window.addEventListener('devicemotion', (dmEvent) => {
             let intensity = getIntensityFromEvent(dmEvent);
             playDrumSound(pad.id, intensity);
+            document.getElementById('intensity-readout').innerText = `Intensity: ${intensity.toFixed(2)}`;
         }, { once: true }); // Use the 'once' option to only trigger this once
 
         setTimeout(() => {
