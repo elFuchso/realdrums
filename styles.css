@@ -2,39 +2,66 @@ body, html {
     height: 100%;
     margin: 0;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: #f0f0f0;
+    background-color: #282c34; /* Dark background for contrast */
+    color: #ffffff;
+    font-family: 'Arial', sans-serif;
 }
 
 #drum-container {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
-    padding: 10px;
+    grid-template-columns: repeat(3, 1fr); /* Adjust based on number of pads */
+    gap: 15px;
+    padding: 15px;
 }
 
 .drum-pad {
     width: 100px;
     height: 100px;
-    background-color: #ddd;
+    background-color: #4caf50; /* Green color for pads */
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    border-radius: 15px;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    transition: all 0.2s ease; /* Smooth transition for interaction */
     user-select: none;
-    transition: transform 0.1s, background-color 0.1s;
+    font-weight: bold;
+    text-transform: uppercase;
 }
 
-.drum-pad.pressed {
-    transform: scale(0.9);
-    background-color: #bbb;
+.drum-pad:active, .drum-pad.pressed {
+    transform: scale(0.95);
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+    background-color: #388e3c; /* Darker shade when pressed */
 }
 
 #intensity-readout {
     margin-top: 20px;
     font-size: 20px;
-    color: #333;
+    color: #fff;
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+}
+
+#request-permission {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    padding: 10px 20px;
+    background-color: #ff5722;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+    transition: background-color 0.2s;
+}
+
+#request-permission:hover {
+    background-color: #e64a19;
 }
