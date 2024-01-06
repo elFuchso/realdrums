@@ -40,6 +40,11 @@ let audioFiles = {
     // Add more as needed
 };
 
+for (let key in audioFiles) {
+    audioFiles[key].preload = 'auto';
+    audioFiles[key].load();
+}
+
 function getIntensityFromEvent(event) {
     let x = event.acceleration.x;
     let y = event.acceleration.y;
