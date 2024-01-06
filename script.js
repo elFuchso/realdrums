@@ -42,6 +42,7 @@ let audioFiles = {
     'tom': new Audio('sounds/tom.wav'),
     'click': new Audio('sounds/click.wav'),
     'cowbell': new Audio('sounds/cowbell.wav'),
+    'hihat-foot': new Audio('sounds/hihatfoot.wav'),
     'bingo': new Audio('sounds/bingo.wav'),
     'bongo': new Audio('sounds/bongo.wav')
     // Add more as needed
