@@ -7,30 +7,31 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="header">
-        <h1>Interactive Drum Pad</h1>
-        <button id="info-btn">What is this?</button>
-        <button id="request-permission">Enable Drum Pads</button>
+    <div class="container">
+        <div class="header">
+            <h1>Interactive Drum Pad</h1>
+            <button id="info-btn">What is this?</button>
+            <button id="request-permission">Enable Drum Pads</button>
+        </div>
+        <div id="drum-container">
+            <div class="drum-pad" id="bass-drum">Bass</div>
+            <div class="drum-pad" id="snare-drum">Snare</div>
+            <div class="drum-pad" id="hihat">Hi-Hat</div>
+            <div class="drum-pad" id="tim">High Tom</div>
+            <div class="drum-pad" id="tam">Mid Tom</div>
+            <div class="drum-pad" id="tom">Low Tom</div>
+            <div class="drum-pad" id="cowbell">Cowbell</div>
+            <div class="drum-pad" id="click">Click</div>
+            <div class="drum-pad" id="hihat-foot">Hihat Foot</div>
+            <div class="drum-pad" id="bingo">High Bongo</div>
+            <div class="drum-pad" id="bongo">Low Bongo</div>
+        </div>
     </div>
     <div id="popup" class="popup">
         <div class="popup-content">
             <span class="close-btn">&times;</span>
             <p>This is an interactive drum pad that takes the impact of your taps into account. The harder you tap, the louder the sound!</p>
         </div>
-    </div>
-    <button id="request-permission">Enable Drum Pads</button>
-    <div id="drum-container">
-        <div class="drum-pad" id="bass-drum">Bass</div>
-        <div class="drum-pad" id="snare-drum">Snare</div>
-        <div class="drum-pad" id="hihat">Hi-Hat</div>
-        <div class="drum-pad" id="tim">High Tom</div>
-        <div class="drum-pad" id="tam">Mid Tom</div>
-        <div class="drum-pad" id="tom">Low Tom</div>
-        <div class="drum-pad" id="cowbell">Cowbell</div>
-        <div class="drum-pad" id="click">Click</div>
-        <div class="drum-pad" id="hihat-foot">Hihat Foot</div>
-        <div class="drum-pad" id="bingo">High Bongo</div>
-        <div class="drum-pad" id="bongo">Low Bongo</div>
     </div>
     <script src="script.js"></script>
 </body>
