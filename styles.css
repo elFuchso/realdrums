@@ -17,6 +17,7 @@ body, html {
 h1 {
     color: #fff;
     margin-bottom: 10px;
+    text-align: center;
 }
 
 #info-btn, #request-permission {
