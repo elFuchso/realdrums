@@ -23,7 +23,8 @@ function setupAccelerometerEvents() {
         let intensity = Math.sqrt(x*x + y*y + z*z);
 
         document.querySelectorAll('.drum-pad').forEach(pad => {
-            pad.addEventListener('click', () => {
+            pad.addEventListener('touchstart', (event) => {
+                event.preventDefault(); // Prevents additional mouse events
                 pad.classList.add('pressed');
                 playDrumSound(pad.id, intensity);
                 
@@ -32,6 +33,7 @@ function setupAccelerometerEvents() {
                 }, 100);
             });
         });
+
     });
 }
 
