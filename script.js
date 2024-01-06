@@ -1,3 +1,5 @@
+let lastIntensity = 0;
+
 // Function to request accelerometer permission
 function requestAccelerometerPermission() {
     if (typeof DeviceMotionEvent !== 'undefined' && typeof DeviceMotionEvent.requestPermission === 'function') {
@@ -20,7 +22,7 @@ function setupAccelerometerEvents() {
         let x = event.acceleration.x;
         let y = event.acceleration.y;
         let z = event.acceleration.z;
-        let intensity = Math.sqrt(x*x + y*y + z*z);
+        lastIntensity = Math.sqrt(x*x + y*y + z*z);
     });
 }
 
@@ -46,6 +48,7 @@ function playDrumSound(drumType) {
     let audio = audioFiles[drumType];
     if (audio) {
         audio.currentTime = 0; // Rewind to the start
+        audio.volume = Math.min(lastIntensity / 10, 1)
         audio.play();
     }
 }
