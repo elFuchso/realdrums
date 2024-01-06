@@ -1,3 +1,14 @@
+window.onload = function() {
+    var isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
+    var isMobile = /Mobi|Android/i.test(navigator.userAgent);
+
+    if (!isChrome || !isMobile) {
+        document.getElementById('browser-warning-popup').style.display = 'flex';
+    }
+};
+
+
+
 // Function to request accelerometer permission
 function requestAccelerometerPermission() {
     if (typeof DeviceMotionEvent !== 'undefined' && typeof DeviceMotionEvent.requestPermission === 'function') {
